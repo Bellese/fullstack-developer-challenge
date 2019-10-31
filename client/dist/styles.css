@@ -1,0 +1,155 @@
+html, body, #app {
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  height: 100%;
+  width: 100%;
+}
+
+.app {
+  height: 100%;
+  width: 100%;
+  background-color: rgba(231, 76, 60, 0.25);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.navbar {
+  width: 100%;
+  text-align: center;
+
+  box-sizing: border-box;
+  background-color: #34495e;
+  color: #fff;
+  box-shadow: 0 10px 28px -7px rgba(0,0,0,0.5);
+  z-index:2;
+  padding: 20px;
+}
+
+.navbar > h1 {
+  margin: 0;
+  font-weight: 400;
+}
+
+.main {
+  flex-grow: 1;
+  display: flex;
+}
+
+.search {
+  flex-basis: 20%;
+  min-width: 200px;
+
+  padding: 20px;
+  background-color: #d35400;
+  z-index:2;
+  text-align:center;
+  font-size: 20px;
+}
+
+.search > button{
+  font-size: 20px;
+  padding: 10px;
+}
+
+.search > select{
+  font-size: 20px;
+  padding: 10px;
+}
+
+.books {
+  flex-basis:80%;
+  display: flex;
+  flex-wrap: wrap;
+  
+  margin:0;
+  padding: 20px; 
+  overflow-y: scroll;
+  background-color: #2c3e50;
+}
+
+.book_item {
+  flex-basis: 22%;
+  box-sizing: border-box;
+  margin: 1.5%;
+
+
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+
+  background-color: #fff;
+  border: 1px solid #eee;
+  box-shadow: 0 10px 28px -7px rgba(0,0,0,0.1);
+}
+
+.book_item > img {
+  width: 100%;
+}
+
+.book_description {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.book_description h2 {
+  color: #555;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.book_details {
+  display: flex;
+  justify-content: space-between;
+}
+
+.book_details span {
+  color: #555;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.book_year, .book_rating {
+  display: flex;
+  flex-direction: column;
+}
+
+.book_year .title, .book_rating .title {
+  color: #aaa;
+  margin-bottom: 5px;
+  font-size: 0.65rem;
+  font-weight: normal;
+}
+
+.book_rating {
+  align-items: flex-end;
+}
+
+#modal-root {
+  position: relative;
+  z-index: 999;
+}
+
+.app {
+  height: 10em;
+  width: 10em;
+  background: lightblue;
+  overflow: hidden;
+}
+
+.modal {
+  background-color: rgba(248, 247, 247, 0.8);
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
