@@ -43,6 +43,7 @@ class App extends Component {
   handleBookClick(e) {
     let rank = e.currentTarget.dataset.id
     let book = this.state.books[rank-1]
+    console.log(book)
     this.setState({showModal: true, currentBook: book});
   }
 
@@ -53,21 +54,23 @@ class App extends Component {
   render() {
     let modal = this.state.showModal ? 
       <Modal>
-        <SelectedBook handleHideModal={this.handleHideModal} currentBook={this.state.currentBook}/>
+        <div className="modal">
+         <div className="preview">
+          <SelectedBook handleHideModal={this.handleHideModal} currentBook={this.state.currentBook}/>
+          </div>
+        </div>
       </Modal>
       : <Fragment />
 
     return (
-    <Fragment>
-      <Books books={this.state.showWishlist ? this.state.wishlist : this.state.books} 
-              showWishList={this.state.showWishList} 
-              handleBookClick={this.handleBookClick}
-              // getMovies={this.getMovies} 
-              // displayFaves={this.displayFaves}
-              // deleteMovie={this.deleteMovie}
-      />
-      {modal}
-    </Fragment>
+      <Fragment>
+        <Books books={this.state.showWishlist ? this.state.wishlist : this.state.books} 
+                showWishList={this.state.showWishList} 
+                handleBookClick={this.handleBookClick}
+        />
+        {modal}
+      </Fragment>
+
     )
   }
 }

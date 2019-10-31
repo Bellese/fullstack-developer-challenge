@@ -106,6 +106,7 @@ html, body, #app {
 .book_details {
   display: flex;
   justify-content: space-between;
+  
 }
 
 .book_details span {
@@ -152,4 +153,9 @@ html, body, #app {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.preview {
+  background-color: white;
+  padding: 10px;
 }
