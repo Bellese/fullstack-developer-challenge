@@ -4,6 +4,14 @@ import React, { Component } from 'react';
 class Books extends Component {
 
   render() {
+    
+    if (!this.props.books) {
+      return (
+        <div className="books">Wishlist empty!</div>
+      )
+    }
+
+
     return (
       <ul className="books" >
       {

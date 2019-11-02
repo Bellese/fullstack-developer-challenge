@@ -106,7 +106,7 @@ html, body, #app {
 .book_details {
   display: flex;
   justify-content: space-between;
-  
+
 }
 
 .book_details span {
@@ -158,4 +158,17 @@ html, body, #app {
 .preview {
   background-color: white;
   padding: 10px;
+}
+
+.right-align {
+  float: right;
+  padding: 5px;
+}
+
+.header {
+  padding: 10px;
+}
+
+#wishlist-notice{
+  visibility: hidden;
 }
