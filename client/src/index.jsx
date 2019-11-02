@@ -16,14 +16,16 @@ class App extends Component {
       wishlist: [],
       books: [],
       currentBook: {},
-      showErrorPage: false,
+      showError: false,
       showModal: false,
+      showMsg: false,
     }
     this.getTopBooks = this.getTopBooks.bind(this)
     this.handleBookClick = this.handleBookClick.bind(this)
     this.handleHideModal = this.handleHideModal.bind(this)
     this.saveToWishlist = this.saveToWishlist.bind(this)
     this.deleteFromWishlist = this.deleteFromWishlist.bind(this)
+    this.hideBannerAfterDelay = this.hideBannerAfterDelay.bind(this)
   }
 
   componentDidMount() {
@@ -52,8 +54,9 @@ class App extends Component {
 
   saveToWishlist() {
     this.setState({
-      wishlist : [this.state.currentBook, ...this.state.wishlist]
-    })
+      wishlist : [this.state.currentBook, ...this.state.wishlist],
+      showMsg : true,
+    }, this.hideBannerAfterDelay)
   }
 
   deleteFromWishlist(e) {
@@ -64,11 +67,20 @@ class App extends Component {
     // this.setState({wishlist: newWishlist})
   }
 
+  hideBannerAfterDelay(delay = 2000) {
+    let self = this;
+    setTimeout(() => {
+      self.setState({ showMsg: false })
+    }, delay)
+  }
+
+
   render() {
     let modal = this.state.showModal ? 
       <Modal>
           <SelectedBook handleHideModal={this.handleHideModal} 
                         currentBook={this.state.currentBook}
+                        showMsg={this.state.showMsg}
                         showWishlist={this.state.showWishlist}
                         saveToWishlist={this.saveToWishlist}
                         deleteFromWishlist={this.deleteFromWishlist}
