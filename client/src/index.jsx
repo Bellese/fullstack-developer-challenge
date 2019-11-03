@@ -35,7 +35,7 @@ class App extends Component {
   getTopBooks(){
     axios.get('/books/top')
       .then((response) => {
-        this.setState({ books: response.data.results.books})
+        this.setState({ books: response.data.results.books, wishlist: response.data.results.books})
       })
       .catch((err) => {
         console.log('An error occurred: ', err)
@@ -43,9 +43,10 @@ class App extends Component {
   }
 
   handleBookClick(e) {
-    let rank = e.currentTarget.dataset.id
+    let rank = e.currentTarget.dataset.rank
+    let idx = e.currentTarget.dataset.idx
     let book = this.state.books[rank-1]
-    this.setState({showModal: true, currentBook: book});
+    this.setState({showModal: true, currentBook: book, currentIdx: idx});
   }
 
   handleHideModal() {
@@ -59,12 +60,10 @@ class App extends Component {
     }, this.hideBannerAfterDelay)
   }
 
-  deleteFromWishlist(e) {
-    // let idx = e.currentTarget.dataset.id - 1
-    // console.log(idx)
-    // let newWishlist = this.state.wishlist.splice(idx, 1)
-    // console.log(newWishlist)
-    // this.setState({wishlist: newWishlist})
+  deleteFromWishlist() {
+    let { wishlist, currentIdx } = this.state
+    wishlist.splice(currentIdx, 1)
+    this.setState({wishlist: wishlist})
   }
 
   hideBannerAfterDelay(delay = 2000) {

@@ -15,8 +15,8 @@ class Books extends Component {
     return (
       <ul className="books" >
       {
-        this.props.books.map((book) => { 
-          return <li className="book_item" key={book.rank} data-id={book.rank} onClick={this.props.handleBookClick}>
+        this.props.books.map((book, idx) => { 
+          return <li className="book_item" key={book.rank} data-idx={idx} data-rank={book.rank}  onClick={this.props.handleBookClick}>
             <div>
             <img src={book.book_image} width="209"/>
             <div className="book_description">
