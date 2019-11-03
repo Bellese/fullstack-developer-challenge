@@ -1,6 +1,6 @@
 import React, {Fragment} from 'react'
 
-const SelectedBook = ({currentBook, handleHideModal, showWishlist, showMsg, saveToWishlist, deleteFromWishlist}) => (  
+const SelectedBook = ({currentBook, handleHideModal, showWishlist, showMsg, addToWishlist, deleteFromWishlist}) => (  
   <div className="modal">
     <div className="preview">
     <div className="book_description">
@@ -24,7 +24,7 @@ const SelectedBook = ({currentBook, handleHideModal, showWishlist, showMsg, save
           <div>
             <button onClick={() => window.open(currentBook.amazon_product_url, "_blank")}>Get the book</button>
             {showWishlist ? <button onClick={()=>handleOnClick(deleteFromWishlist)}>Remove from Wishlist</button>
-                          : <button onClick={()=>handleOnClick(saveToWishlist)}>Add to Wishlist</button>
+                          : <button onClick={()=>handleOnClick(addToWishlist)}>Add to Wishlist</button>
             }
             <div>{showMsg ? "Success!" : ""}</div>
           </div>

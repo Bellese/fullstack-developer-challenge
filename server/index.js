@@ -2,30 +2,14 @@
 
 const express = require('express')
 const parser = require('body-parser')
-const mysql = require('mysql');
 const axios = require('axios');
 const app = express()
+
+const db = require('../database/index.js')
 
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
 }
-
-const connection = mysql.createConnection({
-  host: process.env.RDS_HOSTNAME,
-  user: process.env.RDS_USERNAME,
-  password: process.env.RDS_PASSWORD,
-  port: process.env.RDS_PORT,
-});
-
-connection.connect(function (err) {
-  if (err) {
-    console.error('Database connection failed: ' + err.stack);
-    return;
-  }
-  console.log('Connected to database.');
-});
-
-connection.end();
 
 const port = process.env.PORT;
 const apiKey = process.env.API_KEY
@@ -44,7 +28,17 @@ app.get('/books/top', (req, res) => {
     })
 })
 
+app.get('/books/wishlist', (req, res) => {
+  db.getWishlistBooks((err, response) => res.end(JSON.stringify(response)))
+})
 
+app.post('/books/wishlist', (req, res) => {
+  db.addToWishlist(req.body.currentBook, (err) => res.end(err))
+})
+
+app.delete('/books/wishlist', (req, res) => {
+  db.removeFromWishlist(req.body.currentBook, (err) => res.end(err))
+})
 
 app.listen(port, () => {
   console.log(`listening on port ${port}`)

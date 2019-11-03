@@ -1,0 +1,17 @@
+CREATE DATABASE IF NOT EXISTS okayreads;
+
+USE okayreads;
+
+DROP TABLE IF EXISTS wishlist;
+
+CREATE TABLE IF NOT EXISTS wishlist (
+  id INT NOT NULL AUTO_INCREMENT,
+  title VARCHAR(50) NOT NULL UNIQUE, 
+  book_image VARCHAR(100),
+  amazon_product_url VARCHAR(250),
+  author VARCHAR(50) NOT NULL,
+  rank INT NOT NULL,
+  description TINYTEXT NOT NULL,
+  primary_isbn10 VARCHAR(20) NOT NULL UNIQUE,
+  PRIMARY KEY(id)
+)

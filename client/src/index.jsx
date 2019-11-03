@@ -23,47 +23,65 @@ class App extends Component {
     this.getTopBooks = this.getTopBooks.bind(this)
     this.handleBookClick = this.handleBookClick.bind(this)
     this.handleHideModal = this.handleHideModal.bind(this)
-    this.saveToWishlist = this.saveToWishlist.bind(this)
+    this.addToWishlist = this.addToWishlist.bind(this)
+    this.getWishlistBooks = this.getWishlistBooks.bind(this)
     this.deleteFromWishlist = this.deleteFromWishlist.bind(this)
     this.hideBannerAfterDelay = this.hideBannerAfterDelay.bind(this)
   }
 
   componentDidMount() {
     this.getTopBooks()
+    this.getWishlistBooks()
   }
 
-  getTopBooks(){
+  getTopBooks() {
     axios.get('/books/top')
-      .then((response) => {
-        this.setState({ books: response.data.results.books, wishlist: response.data.results.books})
+      .then(({data}) => {
+        this.setState({ books: data.results.books })
       })
       .catch((err) => {
         console.log('An error occurred: ', err)
       })
   }
 
+  getWishlistBooks() {
+    axios.get('/books/wishlist')
+      .then(({data}) => {
+        this.setState({ wishlist: data })
+      })
+      .catch((err) => console.log("An error occured:", err))
+  }
+
   handleBookClick(e) {
     let rank = e.currentTarget.dataset.rank
-    let idx = e.currentTarget.dataset.idx
-    let book = this.state.books[rank-1]
-    this.setState({showModal: true, currentBook: book, currentIdx: idx});
+    let book = this.state.books[rank - 1]
+    this.setState({ showModal: true, currentBook: book })
   }
 
   handleHideModal() {
-    this.setState({showModal: false})
+    this.setState({ showModal: false })
   }
 
-  saveToWishlist() {
-    this.setState({
-      wishlist : [this.state.currentBook, ...this.state.wishlist],
-      showMsg : true,
-    }, this.hideBannerAfterDelay)
+  addToWishlist() {
+    axios.post('/books/wishlist', {currentBook: this.state.currentBook})
+      .then((data) => {
+        this.setState({showMsg: true}, () => {
+          this.hideBannerAfterDelay()
+          this.getWishlistBooks()
+        })
+      })
+      .catch((err) => console.log('err', err))
   }
 
   deleteFromWishlist() {
-    let { wishlist, currentIdx } = this.state
-    wishlist.splice(currentIdx, 1)
-    this.setState({wishlist: wishlist})
+    let {currentBook} = this.state
+    axios.delete('/books/wishlist', {data: { currentBook, }})
+      .then((data) => {
+        this.setState({showMsg: true}, () => {
+          this.hideBannerAfterDelay()
+          this.getWishlistBooks()
+        })
+      })
   }
 
   hideBannerAfterDelay(delay = 2000) {
@@ -75,15 +93,15 @@ class App extends Component {
 
 
   render() {
-    let modal = this.state.showModal ? 
+    let modal = this.state.showModal ?
       <Modal>
-          <SelectedBook handleHideModal={this.handleHideModal} 
-                        currentBook={this.state.currentBook}
-                        showMsg={this.state.showMsg}
-                        showWishlist={this.state.showWishlist}
-                        saveToWishlist={this.saveToWishlist}
-                        deleteFromWishlist={this.deleteFromWishlist}
-          />
+        <SelectedBook handleHideModal={this.handleHideModal}
+          currentBook={this.state.currentBook}
+          showMsg={this.state.showMsg}
+          showWishlist={this.state.showWishlist}
+          addToWishlist={this.addToWishlist}
+          deleteFromWishlist={this.deleteFromWishlist}
+        />
       </Modal>
       : <Fragment />
 
@@ -93,12 +111,12 @@ class App extends Component {
         <div className="header">
           <h3>Okay Reads</h3>
           <h5>A barely okay clone of Good Reads. Click on a book to learn more about that NYT bestseller.
-            <button className='right-align' onClick={()=>this.setState({showWishlist: !this.state.showWishlist})}>{navButton}</button>
-           </h5>
+            <button className='right-align' onClick={() => this.setState({ showWishlist: !this.state.showWishlist })}>{navButton}</button>
+          </h5>
         </div>
-        <Books books={this.state.showWishlist ? this.state.wishlist : this.state.books} 
-                showWishlist={this.state.showWishlist} 
-                handleBookClick={this.handleBookClick}
+        <Books books={this.state.showWishlist ? this.state.wishlist : this.state.books}
+          showWishlist={this.state.showWishlist}
+          handleBookClick={this.handleBookClick}
         />
         {modal}
       </Fragment>
