@@ -33,10 +33,9 @@ const getWishlistBooks = (cb) => {
 
 const addToWishlist = ({ title, book_image, amazon_product_url, author, rank, description, primary_isbn10 }, cb) => {
   var query = `INSERT INTO wishlist (title, book_image, amazon_product_url, author, rank, description, primary_isbn10) VALUE (?, ?, ?, ?, ?, ?, ?);`;
-  connection.query(query, [title, book_image, amazon_product_url, author, rank, description, primary_isbn10], (err, results) => {
-    console.log(err)
-    //err.code === 'ER_DUP_ENTRY'
-    cb(err);
+  connection.query(query, [title, book_image, amazon_product_url, author, rank, description, primary_isbn10], (err) => {
+    if(err) cb(err.code)
+    else cb(null)
   });
 }
 

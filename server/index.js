@@ -20,12 +20,8 @@ app.use(parser.json());
 app.get('/books/top', (req, res) => {
   let url = `https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key=${apiKey}`
   axios.get(url)
-    .then(response => {
-      res.end(JSON.stringify(response.data))
-    })
-    .catch(err => {
-      res.end(err)
-    })
+    .then(response => res.end(JSON.stringify(response.data)))
+    .catch(err => res.end(err))
 })
 
 app.get('/books/wishlist', (req, res) => {

@@ -26,7 +26,7 @@ const SelectedBook = ({currentBook, handleHideModal, showWishlist, showMsg, addT
             {showWishlist ? <button onClick={()=>handleOnClick(deleteFromWishlist)}>Remove from Wishlist</button>
                           : <button onClick={()=>handleOnClick(addToWishlist)}>Add to Wishlist</button>
             }
-            <div>{showMsg ? "Success!" : ""}</div>
+            <div>{showMsg}</div>
           </div>
         </div>
       </section>
