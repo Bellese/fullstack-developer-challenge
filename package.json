@@ -4,9 +4,8 @@
   "description": "Bellese technologies coding take home challenge",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --config webpack.config.js",
-    "react-dev": "webpack -d --watch",
-    "server-dev": "nodemon server/index.js"
+    "start": "node app.js",
+    "build": "webpack --config webpack.config.js"
   },
   "author": "WG",
   "homepage": "https://github.com/weigao10/fullstack-developer-challenge",
@@ -18,7 +17,6 @@
     "ejs": "^2.7.1",
     "express": "^4.16.3",
     "mysql": "^2.17.1",
-    "nodemon": "^1.19.4",
     "react": "^16.3.1",
     "react-dom": "^16.3.1"
   },

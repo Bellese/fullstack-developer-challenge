@@ -81,7 +81,7 @@ class App extends Component {
     axios.delete('/books/wishlist', {data: { currentBook, }})
       .then((response) => {
         let message = "Successfully deleted from your wishlist.";
-        if (response) message = errorMessage
+        if (response.data) message = errorMessage
         this.setState({showMsg: message}, () => {
           this.hideBannerAfterDelay()
           this.getWishlistBooks()

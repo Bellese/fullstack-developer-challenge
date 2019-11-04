@@ -5,16 +5,16 @@ const parser = require('body-parser')
 const axios = require('axios');
 const app = express()
 
-const db = require('../database/index.js')
+const db = require('./database/index.js')
 
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
 }
 
-const port = process.env.PORT;
+const port = process.env.PORT || 8000;
 const apiKey = process.env.API_KEY
 
-app.use(express.static(__dirname + '/../client/dist'));
+app.use(express.static(__dirname + '/client/dist'));
 app.use(parser.json());
 
 app.get('/books/top', (req, res) => {
