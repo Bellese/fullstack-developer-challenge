@@ -38,14 +38,14 @@ class App extends Component {
 
   getTopBooks() {
     axios.get('/books/top')
-      .then(({data}) => this.setState({ books: data.results.books }))
+      .then(({ data }) => this.setState({ books: data.results.books }))
       .catch((err) => console.log('An error occurred: ', err))
   }
 
   getWishlistBooks() {
     axios.get('/books/wishlist')
-      .then(({data}) => this.setState({ wishlist: data }))
-      .catch((err) => console.err(err))
+      .then(({ data }) => this.setState({ wishlist: data }))
+      .catch((err) => console.err('An error occurred:', err))
   }
 
   handleBookClick(e) {
@@ -59,30 +59,30 @@ class App extends Component {
   }
 
   addToWishlist() {
-    axios.post('/books/wishlist', {currentBook: this.state.currentBook})
+    axios.post('/books/wishlist', { currentBook: this.state.currentBook })
       .then((response) => {
         let message = "Good choice! Successfully added to your wishlist :)"
-        
-        if(response && response.data) {
-          if(response.data === 'ER_DUP_ENTRY') message = "This title is already in your wishlist!"
+
+        if (response && response.data) {
+          if (response.data === 'ER_DUP_ENTRY') message = "This title is already in your wishlist!"
           else message = errorMessage
         }
 
-        this.setState({showMsg: message}, () => {
+        this.setState({ showMsg: message }, () => {
           this.hideBannerAfterDelay()
           this.getWishlistBooks()
         })
       })
-      .catch((err) => console.log('err', err))
+      .catch((err) => console.err('An error occurred:', err))
   }
 
   deleteFromWishlist() {
-    let {currentBook} = this.state
-    axios.delete('/books/wishlist', {data: { currentBook, }})
+    let { currentBook } = this.state
+    axios.delete('/books/wishlist', { data: { currentBook, } })
       .then((response) => {
         let message = "Successfully deleted from your wishlist.";
         if (response.data) message = errorMessage
-        this.setState({showMsg: message}, () => {
+        this.setState({ showMsg: message }, () => {
           this.hideBannerAfterDelay()
           this.getWishlistBooks()
         })

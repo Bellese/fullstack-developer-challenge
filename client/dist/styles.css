@@ -7,7 +7,7 @@ html, body, #app {
   width: 100%;
 }
 
-.app {
+#app {
   height: 100%;
   width: 100%;
   background-color: rgba(231, 76, 60, 0.25);
@@ -16,55 +16,17 @@ html, body, #app {
   overflow: hidden;
 }
 
-.navbar {
-  width: 100%;
-  text-align: center;
-
-  box-sizing: border-box;
-  background-color: #34495e;
-  color: #fff;
-  box-shadow: 0 10px 28px -7px rgba(0,0,0,0.5);
-  z-index:2;
-  padding: 20px;
-}
-
-.navbar > h1 {
-  margin: 0;
-  font-weight: 400;
-}
-
 .main {
   flex-grow: 1;
   display: flex;
-}
-
-.search {
-  flex-basis: 20%;
-  min-width: 200px;
-
-  padding: 20px;
-  background-color: #d35400;
-  z-index:2;
-  text-align:center;
-  font-size: 20px;
-}
-
-.search > button{
-  font-size: 20px;
-  padding: 10px;
-}
-
-.search > select{
-  font-size: 20px;
-  padding: 10px;
 }
 
 .books {
   flex-basis:80%;
   display: flex;
   flex-wrap: wrap;
-  
-  margin:0;
+  min-height: 20rem;
+  margin: 0;
   padding: 20px; 
   overflow-y: scroll;
   background-color: #2c3e50;
@@ -74,18 +36,15 @@ html, body, #app {
   flex-basis: 22%;
   box-sizing: border-box;
   margin: 1.5%;
-
-
   display: flex;
   flex-direction: column;
   list-style: none;
-
   background-color: #fff;
   border: 1px solid #eee;
   box-shadow: 0 10px 28px -7px rgba(0,0,0,0.1);
 }
 
-.book_item > img {
+.book_item > div > img {
   width: 100%;
 }
 
@@ -120,7 +79,7 @@ html, body, #app {
   flex-direction: column;
 }
 
-.book_year .title, .book_rating .title {
+.book_year, .book_rating{
   color: #aaa;
   margin-bottom: 5px;
   font-size: 0.65rem;
@@ -131,16 +90,20 @@ html, body, #app {
   align-items: flex-end;
 }
 
-#modal-root {
-  position: relative;
-  z-index: 999;
-}
-
 .app {
   height: 10em;
   width: 10em;
   background: lightblue;
   overflow: hidden;
+}
+
+#modal-root {
+  position: relative;
+  z-index: 999;
+}
+
+.modal-right {
+  padding: 2rem;
 }
 
 .modal {
@@ -155,9 +118,14 @@ html, body, #app {
   justify-content: center;
 }
 
+.modal-left{
+  padding-bottom: 1rem;
+}
+
 .preview {
   background-color: white;
   padding: 10px;
+  max-width: 50%;
 }
 
 .right-align {
@@ -167,6 +135,28 @@ html, body, #app {
 
 .header {
   padding: 10px;
+}
+
+button{
+  border: 0;
+  background: #21a8ca;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  font-size: 0.8rem;
+  line-height: 1;
+  color: white;
+  cursor: pointer;
+}
+
+.close-btn {
+  width: 100%;
+  border: 0;
+  background: #21a8ca;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  font-size: 0.8rem;
+  line-height: 1;
+  color: white;
 }
 
 #wishlist-notice{
