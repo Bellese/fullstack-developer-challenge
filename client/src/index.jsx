@@ -110,7 +110,7 @@ class App extends Component {
       </Modal>
       : <Fragment />
 
-    let navButton = this.state.showWishlist ? "See NYT best sellers" : "See your wishlist";
+    let navButton = this.state.showWishlist ? "See NYT bestsellers" : "See your wishlist";
     return (
       <Fragment>
         <div className="header">

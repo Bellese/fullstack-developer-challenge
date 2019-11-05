@@ -21,6 +21,10 @@ html, body, #app {
   display: flex;
 }
 
+.wishlist-empty{
+  color: white;
+}
+
 .books {
   flex-basis:80%;
   display: flex;
@@ -42,6 +46,7 @@ html, body, #app {
   background-color: #fff;
   border: 1px solid #eee;
   box-shadow: 0 10px 28px -7px rgba(0,0,0,0.1);
+  cursor: pointer;
 }
 
 .book_item > div > img {
@@ -65,7 +70,6 @@ html, body, #app {
 .book_details {
   display: flex;
   justify-content: space-between;
-
 }
 
 .book_details span {
@@ -122,10 +126,15 @@ html, body, #app {
   padding-bottom: 1rem;
 }
 
+#modal-x{
+  float: right;
+  cursor: pointer;
+}
+
 .preview {
   background-color: white;
   padding: 10px;
-  max-width: 50%;
+  max-width: 70%;
 }
 
 .right-align {

@@ -4,7 +4,7 @@ const SelectedBook = ({ currentBook, handleHideModal, showWishlist, showMsg, add
   <div className="modal">
     <div className="preview">
       <div className="book_description">
-        <h2>{currentBook.title}</h2>
+        <h2>{currentBook.title} <span id="modal-x" onClick={handleHideModal}>X</span></h2>
         <section className="book_details">
           {/* div 1 */}
           <div className="modal-left">

@@ -7,7 +7,9 @@ class Books extends Component {
 
     if (!this.props.books) {
       return (
-        <div className="books">Wishlist empty!</div>
+        <div className="books">
+          <span className="wishlist-empty">Oh no! You haven't added any books to your wishlist. Check out the NYT bestsellers and start adding now!</span>
+        </div>
       )
     }
 
