@@ -1,0 +1,12 @@
+/package-lock.json
+/client/dist/bundle.js
+/client/.DS_Store
+/node_modules/
+Archive.zip
+.env
+.DS_Store
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
